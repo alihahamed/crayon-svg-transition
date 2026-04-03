@@ -1,9 +1,9 @@
 import SplitHeading from "@/components/SplitHeading";
 
-export default function Home() {
+export default function About() {
   return (
     <main className="hero">
-      <SplitHeading text="HOME" />
+      <SplitHeading text="ABOUT" />
     </main>
   );
 }
