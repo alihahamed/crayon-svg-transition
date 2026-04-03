@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🖍️ NeonWipe: Next.js Crayon Transitions
 
-## Getting Started
+**NeonWipe** is a premium, minimalist Next.js starter featuring high-energy SVG "crayon" stroke transitions. It uses **GSAP** and **next-transition-router** to create a seamless, cinematic navigation experience with a unique hand-drawn aesthetic.
 
-First, run the development server:
+## ✨ Key Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Dynamic Crayon Transitions**: 3-path SVG strokes that draw and retract with customizable GSAP staggering.
+- **Letter-by-Letter Hero Text**: A custom `SplitHeading` component that triggers staggered character animations on page entrance.
+- **Floating Pill Navbar**: A modern, glassmorphism-inspired navigation bar with active state tracking.
+- **Neon Aesthetic**: A bold, high-contrast color palette (Neon Pink, Green, Blue) designed for modern creative portfolios.
+- **Performance First**: Built on Next.js 14+ (App Router) with optimized frame rates for complex SVG path animations.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org/) (App Router)
+- **Animation**: [GSAP](https://gsap.com/) (GreenSock Animation Platform)
+- **Router Hook**: [next-transition-router](https://github.com/ismamz/next-transition-router)
+- **Styling**: Vanilla CSS (Zero-utility bloat)
+
+## 🚀 Getting Started
+
+1. **Clone the repo**:
+   ```bash
+   git clone https://github.com/alihahamed/crayon-svg-transition.git
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
+
+## 🎨 Configuration
+
+You can easily customize the transition colors and timings in `src/app/globals.css`:
+
+```css
+:root {
+  --transition-stroke-1: #FF2D87; /* Neon Pink */
+  --transition-stroke-2: #AAFF00; /* Neon Green */
+  --transition-stroke-3: #0066FF; /* Electric Blue */
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+And adjust the stagger timing in `src/providers/TransitionProvider.jsx`:
+```javascript
+tl.to(path, { ... }, index * 0.1); // Adjust the multiplier for more/less overlap
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📜 License
+MIT
