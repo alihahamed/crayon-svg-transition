@@ -25,103 +25,99 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ===================== FLOATING NAVBAR ===================== */
+/* ===================== PILL CHAIN NAVBAR ===================== */
 
-.navbar-floating {
+.pill-bar {
   position: fixed;
   top: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 50;
-  width: calc(100% - 2rem);
-  max-width: 900px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 2rem;
 }
 
-.navbar-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.6rem 1rem;
-  background: rgba(255, 255, 255, 0.85);
+/* Logo — white, floats over video */
+.pill-bar-logo {
+  text-decoration: none;
+  font-family: var(--font-dm-sans);
+  font-size: 1rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.03em;
+  justify-self: start;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+}
+
+/* Center pill container — white outer shell */
+.pill-nav {
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: 999px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  padding: 0.3rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
 }
 
-.navbar-links {
+/* Chain of pill links — no gap */
+.pill-chain {
   display: flex;
   list-style: none;
-  gap: 0.25rem;
+  gap: 0;
+  align-items: center;
 }
 
-.navbar-link {
+/* Each nav link — green pill, chained flush */
+.pill-link {
   text-decoration: none;
-  color: #333;
+  display: block;
   font-family: var(--font-dm-sans);
-  font-size: 0.875rem;
-  font-weight: 500;
-  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #000;
+  background: #AAFF00;
+  padding: 0.5rem 1.25rem;
   border-radius: 999px;
+  white-space: nowrap;
   transition: background 0.2s, color 0.2s;
 }
 
-.navbar-link:hover {
-  background: rgba(0, 0, 0, 0.05);
-  color: #000;
+.pill-link:hover {
+  background: #9AEF00;
 }
 
-.navbar-link.active {
-  background: rgba(0, 0, 0, 0.08);
-  color: #000;
-  font-weight: 600;
+.pill-link.active {
+  background: #000;
+  color: #AAFF00;
 }
 
-.navbar-logo {
-  text-decoration: none;
-  font-family: var(--font-dm-sans);
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #000;
-  letter-spacing: -0.02em;
-}
-
-.navbar-actions {
+/* CTA — white outline, floats over video */
+.pill-bar-actions {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: flex-end;
 }
 
-.navbar-signin {
-  text-decoration: none;
-  color: #333;
-  font-family: var(--font-dm-sans);
-  font-size: 0.875rem;
-  font-weight: 500;
-  padding: 0.4rem 0.75rem;
-  border-radius: 999px;
-  transition: background 0.2s;
-}
-
-.navbar-signin:hover {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-.navbar-cta {
+.pill-bar-cta {
   text-decoration: none;
   font-family: var(--font-dm-sans);
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #000000;
-  background: #AAFF00;
-  padding: 0.45rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  background: transparent;
+  padding: 0.5rem 1.25rem;
   border-radius: 999px;
-  transition: background 0.2s;
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  transition: background 0.2s, border-color 0.2s;
+  white-space: nowrap;
 }
 
-.navbar-cta:hover {
-  background: #7ca130;
+.pill-bar-cta:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.8);
 }
 
 /* ===================== HERO ===================== */
@@ -303,3 +299,351 @@ body {
   stroke-dashoffset: 99999;
   stroke-dasharray: 99999;
 }
+
+/* ===================== STUDIO HERO ===================== */
+
+.hero-studio {
+  flex-direction: column;
+  padding-top: 72px;
+  padding-bottom: 2rem;
+  justify-content: center;
+  background-color: #111;
+}
+
+.hero-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-blobs {
+  display: none;
+}
+
+.blob {
+  position: absolute;
+  width: clamp(280px, 38vw, 520px);
+  height: clamp(280px, 38vw, 520px);
+  border-radius: 50%;
+  opacity: 0.85;
+  filter: blur(20px);
+  will-change: transform;
+}
+
+.blob-blue {
+  background: #a8c4f5;
+  top: 20%;
+  left: 20%;
+}
+
+.blob-green {
+  background: #c8f0a0;
+  top: 35%;
+  right: 15%;
+}
+
+.blob-pink {
+  background: #f5b8d8;
+  bottom: 20%;
+  left: 40%;
+}
+
+/* Content */
+
+.hero-studio-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0 0.5rem;
+  width: 100%;
+}
+
+.hero-studio .hero-headline {
+  text-transform: uppercase;
+  font-family: var(--font-barlow-condensed);
+  font-size: clamp(3rem, 10.5vw, 11rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 2px 40px rgba(0,0,0,0.5), 0 0px 80px rgba(0,0,0,0.3);
+  width: 100%;
+}
+
+.headline-line {
+  display: block;
+}
+
+.headline-desc-wrap {
+  display: block;
+  overflow: hidden;
+  text-align: center;
+}
+
+.headline-desc {
+  display: block;
+  font-family: var(--font-barlow-condensed);
+  font-size: 22px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0;
+  line-height: 1.5;
+  white-space: nowrap;
+  padding: 0.5rem 0;
+}
+
+.hero-headline .word {
+  display: inline;
+}
+
+.hero-studio-sub {
+  font-family: var(--font-dm-sans);
+  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+  color: #555;
+  text-align: center;
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+/* Magnetic CTA */
+
+.cta-magnetic-wrap {
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta-pill {
+  font-family: var(--font-dm-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000;
+  background: #AAFF00;
+  border: none;
+  padding: 0.65rem 0.65rem 0.65rem 1.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(170, 255, 0, 0.25);
+  will-change: transform;
+}
+
+.cta-pill:hover {
+  background: #c4ff4d;
+  box-shadow: 0 6px 30px rgba(170, 255, 0, 0.4);
+}
+
+.cta-arrow-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.cta-arrow-circle span {
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #000;
+}
+
+/* ===================== ABOUT PAGE (REVEAL WALL) ===================== */
+
+.about-wrapper {
+  width: 100%;
+}
+
+.reveal-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.reveal-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  will-change: transform;
+}
+
+/* Z-Index Stacking (Highest to Lowest) */
+.panel-1 {
+  z-index: 4;
+  background: var(--transition-stroke-3);
+  color: #fff; /* Blue panel needs white text */
+}
+
+.panel-2 {
+  z-index: 3;
+  background: var(--transition-stroke-2);
+  color: #000;
+}
+
+.panel-3 {
+  z-index: 2;
+  background: var(--transition-stroke-1);
+  color: #fff; /* Pink panel gets white text */
+}
+
+.panel-4 {
+  z-index: 1;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* Panel Content Styling */
+.panel-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  max-width: 1200px;
+}
+
+.panel-1 .about-headline {
+  /* Override default split headline for the huge ABOUT text */
+  margin-bottom: 2rem;
+}
+
+.panel-1 .hero-headline {
+  color: rgb(2, 2, 2);
+  font-size: clamp(4rem, 15vw, 15rem);
+}
+
+.panel-headline {
+  font-family: var(--font-barlow-condensed);
+  font-size: clamp(3.5rem, 10vw, 10rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: inherit;
+  margin-bottom: 1.5rem;
+}
+
+.panel-sub {
+  font-family: var(--font-dm-sans);
+  font-size: clamp(1.2rem, 2vw, 2rem);
+  font-weight: 500;
+  color: inherit;
+  opacity: 0.9;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  font-family: var(--font-dm-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: inherit;
+  letter-spacing: 0.1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 60px;
+  background: currentColor;
+  opacity: 0.6;
+  animation: slide-line 2s infinite cubic-bezier(0.77, 0, 0.175, 1);
+  transform-origin: top;
+}
+
+@keyframes slide-line {
+  0% { transform: scaleY(0); transform-origin: top; }
+  45% { transform: scaleY(1); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+.panel-text-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.panel-text-grid p {
+  font-family: var(--font-dm-sans);
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
+  line-height: 1.5;
+  color: #000;
+}
+
+.tech-stack-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.tech-stack-list span {
+  font-family: var(--font-barlow-condensed);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  color: #fff;
+  opacity: 0.8;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.tech-stack-list span:hover {
+  opacity: 1;
+  transform: translateY(-5px) scale(1.1);
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+  .panel-text-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+

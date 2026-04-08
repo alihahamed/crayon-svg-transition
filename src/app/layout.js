@@ -16,7 +16,7 @@ const barlowCondensed = Barlow_Condensed({
 });
 
 export const metadata = {
-  title: "Codegrid",
+  title: "Smooth Transition",
   description: "A minimal black and white site",
 };
 
