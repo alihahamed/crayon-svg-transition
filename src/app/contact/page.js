@@ -103,7 +103,7 @@ export default function Contact() {
           </h1>
         </div>
       ) : (
-        <div className="flex-grow w-full max-w-[1700px] mx-auto flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 xl:gap-24 relative z-10 h-full">
+        <div className="flex-grow w-full max-w-[1700px] mx-auto flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-24 xl:gap-[8vw] 2xl:gap-[12vw] relative z-10 h-full">
           
           {/* Left Column: Heading */}
           <div ref={leftColRef} className="w-full lg:w-[50%] flex flex-col justify-center h-full pl-0 lg:pl-8">
@@ -134,7 +134,7 @@ export default function Contact() {
           </div>
 
           {/* Right Column: Form */}
-          <form onSubmit={handleSubmit} className="w-full lg:w-[45%] xl:w-[40%] flex flex-col justify-center gap-3 lg:gap-4 h-full pr-4 md:pr-12 lg:pr-16 pb-2 lg:pb-0">
+          <form onSubmit={handleSubmit} className="w-full lg:w-[40%] xl:w-[35%] flex flex-col justify-center gap-4 lg:gap-6 h-full pr-4 md:pr-12 lg:pr-16 xl:pr-20 pb-2 lg:pb-0">
             
             {/* Field Box 1 */}
             <div 
